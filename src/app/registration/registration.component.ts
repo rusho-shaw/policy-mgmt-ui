@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../_service/user.service';
-import {User} from '../_models/user';
-import {IMyDpOptions} from "mydatepicker";
+import {IMyDpOptions} from 'mydatepicker';
 
 @Component({
   selector: 'app-registration',

@@ -5,12 +5,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {User} from '../_models/user';
+import {environment} from '../../environments/environment';
 
 
 @Injectable()
 export class UserService {
 
-  private userURL = 'http://localhost:9080/user';
+  // private userURL = 'http://localhost:9080/user';
+  private userURL = environment.userURL;
   constructor(private http: Http) { }
 
   save(user: User): Observable<User> {

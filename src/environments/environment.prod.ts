@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  userURL: 'http://somedomain.com/user'
 };

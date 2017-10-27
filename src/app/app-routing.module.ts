@@ -27,7 +27,7 @@ const routes: Routes = [
 ];
 // export const appRouterModule = RouterModule.forRoot(routes);
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 
