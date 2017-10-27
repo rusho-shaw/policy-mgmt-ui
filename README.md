@@ -1,10 +1,20 @@
 # PolicyMgmtUi
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.7.
+Install angular cli through node.
+
+`npm install -g @angular/cli`
+
+Open cmd from your desired folder and execute  the below command:
+
+`ng new policy-mgmt-ui --style scss`
+
+This will create an Angular 2 project named policy-mgmt-ui
+
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. Or type `ng serve --open` which will directly open the app in your default browser.
 
 ## Code scaffolding
 
@@ -21,6 +31,14 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Deploying in Pivotal Cloud Foundry
+
+Run the below commands from `policy-mgmt-ui` directory one after the other
+`ng build`
+`cd dist`
+`cf push  -b staticfile_buildpack policy-mgmt-ui`
+Check if everything is working fine by opening the url of policy-mgmt-ui app deployed in pcf.
 
 ## Further help
 
