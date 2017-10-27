@@ -32,14 +32,16 @@ In `src/styles.scss`, add the following:
 
 To check that bootstrap css is working we will just write a bit of test code in `app.component.html`
 
-`<div class="container">
+````html
+<div class="container">
   <div class="row">
     <div class="col-md-6"> col-md-6 </div> <div class="col-md-6"> col-md-6</div>
   </div>
   <div class="row">
     <div class="col-md-8"> col-md-8 </div> <div class="col-md-4"> col-md-4</div>
   </div>
-</div>`
+</div>
+````
 
 And then  execute:
 `ng serve –open`
