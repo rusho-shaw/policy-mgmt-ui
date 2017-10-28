@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  userURL: 'http://somedomain.com/user'
+  userURL: 'https://user-mgmt-srvc-aares.cfapps.io/user'
 };
