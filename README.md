@@ -71,6 +71,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 Run the below commands from `policy-mgmt-ui` directory one after the other
 
 `ng build`
+* For prod build use: `ng build -prod`
 
 `cd dist`
 
