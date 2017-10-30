@@ -12,9 +12,21 @@ export class RegistrationComponent implements OnInit {
 
   user: any = {};
   sub: any;
+  loading: string;
   userName: string;
+  date: Date = new Date();
   public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'dd/mm/yyyy'
+    dateFormat: 'dd/mm/yyyy',
+    disableSince: {
+      year: this.date.getFullYear(),
+      month: this.date.getMonth() + 1,
+      day: this.date.getDate()},
+    enableDays: [{
+      year: this.date.getFullYear(),
+      month: this.date.getMonth() + 1,
+      day: this.date.getDate()}]/*,
+    editableDateField: false,
+    openSelectorOnInputClick: true*/
   };
 
   constructor(private userService: UserService,
@@ -22,6 +34,7 @@ export class RegistrationComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    this.loading =  'loading';
   }
   /*ngOnDestroy(): void {
     this.sub.unsubscribe();
@@ -30,5 +43,6 @@ export class RegistrationComponent implements OnInit {
     /*alert(`saved!!! ${JSON.stringify(this.user)}`);*/
     this.userService.save(this.user)
       .subscribe(r => this.userName = r.userName);
+    this.loading = null;
   }
 }

@@ -1,9 +1,10 @@
+<span class="registration-page">
 <div class="row">
   <div class="col-sm-1 col-sm-offset-10">
     <a [routerLink]="['/home']" ><u>Home</u></a>
   </div>
 </div>
-<section *ngIf="!userName">
+<section *ngIf="loading">
 <div class="row">
   <div class="col-sm-11 col-sm-offset-1">
     <h3>Customer Information</h3>
@@ -64,10 +65,11 @@
       Contact No<span class="glyphicon glyphicon-asterisk"></span>
     </div>
     <div class="col-sm-2">
-      <input type="text" class="form-control" name="contactNo" required [(ngModel)]="user.contactNo" #contactNo="ngModel" />
+      <input type="text" pattern="[0-9]*" class="form-control" name="contactNo" required [(ngModel)]="user.contactNo" #contactNo="ngModel" />
     </div>
-    <div class="col-sm-4" [hidden]="contactNo.valid || contactNo.pristine" class="error">
-      Contact No is required
+    <div class="col-sm-4" *ngIf="contactNo.errors && (contactNo.dirty || contactNo.touched)" class="error">
+     Contact No <span *ngIf="contactNo.errors.required">is required</span>
+      <span *ngIf="contactNo.errors.pattern">must contain only numbers</span>
     </div>
   </div>
   <div class="form-group row">
@@ -75,10 +77,13 @@
       Email Address<span class="glyphicon glyphicon-asterisk"></span>
     </div>
     <div class="col-sm-2">
-      <input type="email" class="form-control" name="emailAddress" required [(ngModel)]="user.emailAddress" #emailAddress="ngModel" />
+      <input type="email" class="form-control" name="email"
+             pattern="[0-9 a-z A-Z_.@]*"
+             required [(ngModel)]="user.emailAddress" #emailAddress="ngModel" />
     </div>
-    <div class="col-sm-4" [hidden]="emailAddress.valid || emailAddress.pristine" class="error">
-      Email Address is required
+    <div class="col-sm-4" *ngIf="emailAddress.errors && (emailAddress.dirty || emailAddress.touched)" class="error">
+      <span *ngIf="emailAddress.errors.required">Email Address  is required</span>
+      <span *ngIf="emailAddress.errors.pattern">Only underscore(_) dot(.) and (@) allowed as special characters </span>
     </div>
   </div>
   <div class="form-group row">
@@ -113,4 +118,8 @@
   </div>
 </form>
 </section>
-<section *ngIf="userName">Login with the User ID: {{userName}} and provided password.</section>
+<section *ngIf="!loading">
+  <section *ngIf="userName">Login with the User ID: {{userName}} and provided password.</section>
+  <section *ngIf="!userName"><div class="error">Error registering user.</div></section>
+</section>
+</span>
