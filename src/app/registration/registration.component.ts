@@ -24,9 +24,9 @@ export class RegistrationComponent implements OnInit {
     enableDays: [{
       year: this.date.getFullYear(),
       month: this.date.getMonth() + 1,
-      day: this.date.getDate()}]/*,
+      day: this.date.getDate()}],
     editableDateField: false,
-    openSelectorOnInputClick: true*/
+    openSelectorOnInputClick: true
   };
 
   constructor(private userService: UserService,
@@ -44,5 +44,9 @@ export class RegistrationComponent implements OnInit {
     this.userService.save(this.user)
       .subscribe(r => this.userName = r.userName);
     this.loading = null;
+  }
+  resetUserForm() {
+    this.loading =  'loading';
+    this.user = {};
   }
 }

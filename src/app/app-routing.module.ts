@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {AuthGuard} from './_guards/auth.guard';
 
 const routes: Routes = [
   // map '/persons to people list component
@@ -16,7 +17,8 @@ const routes: Routes = [
   },*/
   {
     path: 'register',
-    component: RegistrationComponent
+    component: RegistrationComponent/*,
+    canActivate: [AuthGuard]*/
   },
   // map '/' to '/persons'as our default route
   {

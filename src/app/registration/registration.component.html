@@ -17,14 +17,11 @@
     </div>
     <div class="col-sm-2">
       <input type="text" class="form-control" name="firstName" required [(ngModel)]="user.firstName"
-             pattern="[a-z-A-Z ]*" #firstName="ngModel" />
+             #firstName="ngModel" />
     </div>
     <div class="col-sm-4" [hidden]="firstName.valid || firstName.pristine" class="error">
       First Name is required
     </div>
-    <!--<div class="col-sm-4" [hidden]="!(firstName.errors && (firstName.dirty || firstName.touched))" class="error">
-      First Name values...
-    </div>-->
   </div>
   <div class="form-group row">
     <div class="col-sm-2 col-sm-offset-1">
@@ -43,10 +40,10 @@
     </div>
     <div class="col-sm-2">
       <!--<input type="date" class="form-control" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" #dateOfBirth="ngModel" />-->
-      <my-date-picker name="dateOfBirth" [options]="myDatePickerOptions" [(ngModel)]="user.dateOfBirth" required #dateOfBirth="ngModel"></my-date-picker>
+      <my-date-picker name="dateOfBirth" [options]="myDatePickerOptions" required [(ngModel)]="user.dateOfBirth" #dateOfBirth="ngModel"></my-date-picker>
     </div>
     <div class="col-sm-4" [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="error">
-      Date Of Birth is required
+       Date Of Birth is required
     </div>
   </div>
   <div class="form-group row">
@@ -102,18 +99,26 @@
       Confirm Password<span class="glyphicon glyphicon-asterisk"></span>
     </div>
     <div class="col-sm-2">
-      <input type="password" class="form-control" name="confirmPassword" required [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" />
+      <input type="password" class="form-control" name="confirmPassword" [appMatch]="user.password" required [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" />
     </div>
-    <div class="col-sm-4" [hidden]="confirmPassword.valid || confirmPassword.pristine" class="error">
+    <!--<div class="col-sm-4" [hidden]="confirmPassword.valid || confirmPassword.pristine" class="error">
       Confirm Password is required
+    </div>-->
+    <div class="col-sm-4" *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)" class="error">
+      <span [hidden]="!confirmPassword.errors.required" >
+            Confirm Password  is required
+      </span>
+      <span [hidden]="!confirmPassword.errors.appMatch || confirmPassword.errors.required" >
+        Confirm Password and Password must match
+      </span>
     </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-2 col-sm-offset-1">
-      <button class="btn btn-primary">Reset</button>
+      <button class="btn btn-primary" (click)="resetUserForm()" type="reset" >Reset</button>
     </div>
     <div class="col-sm-2">
-      <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn btn-primary" [disabled]="!userForm.form.valid" type="submit">Submit</button>
     </div>
   </div>
 </form>

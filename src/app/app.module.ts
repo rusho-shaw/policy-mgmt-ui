@@ -10,6 +10,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {MyDatePickerModule} from 'mydatepicker';
+import { MatchValidatorDirective } from './_validators/match-validator.directive';
+import {AuthGuard} from './_guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {MyDatePickerModule} from 'mydatepicker';
     LoginComponent,
     RegistrationComponent,
     AllPoliciesComponent,
-    UserPoliciesComponent
+    UserPoliciesComponent,
+    MatchValidatorDirective
+
   ],
   imports: [
     BrowserModule,
@@ -26,7 +30,7 @@ import {MyDatePickerModule} from 'mydatepicker';
     AppRoutingModule,
     MyDatePickerModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
