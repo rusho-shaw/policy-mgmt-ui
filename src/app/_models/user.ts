@@ -12,5 +12,7 @@ export interface User {
   emailAddress: string;
   confirmPassword: string;
   policies?: UserPolicy[];
+  role?: string;
+  userError?: string;
 
 }

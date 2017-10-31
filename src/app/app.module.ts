@@ -12,6 +12,7 @@ import {HttpModule} from '@angular/http';
 import {MyDatePickerModule} from 'mydatepicker';
 import { MatchValidatorDirective } from './_validators/match-validator.directive';
 import {AuthGuard} from './_guards/auth.guard';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {AuthGuard} from './_guards/auth.guard';
     RegistrationComponent,
     AllPoliciesComponent,
     UserPoliciesComponent,
-    MatchValidatorDirective
+    MatchValidatorDirective,
+    LandingComponent
 
   ],
   imports: [

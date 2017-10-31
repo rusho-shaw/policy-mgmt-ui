@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import {User} from '../_models/user';
 import {environment} from '../../environments/environment';
+import { URLSearchParams } from '@angular/http';
 
 
 @Injectable()
@@ -25,6 +26,22 @@ export class UserService {
       .map(mapUserFromResponse);
   }
 
+  login(userName: string, password: string): Observable<User> {
+    console.log('in user service login');
+    console.log(JSON.stringify({ userName: userName, password: password }));
+    const urlSearchParams = new URLSearchParams();
+    urlSearchParams.append('userName', userName);
+    urlSearchParams.append('password', password);
+
+    return this.http.post(`${this.userURL}/login`
+      , urlSearchParams)
+      .map(mapUserFromResponse);
+  }
+
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+  }
   private getHeaders() {
     const headers = new Headers();
     headers.append('Accept', 'application/json');
@@ -36,11 +53,25 @@ export class UserService {
 function mapUserFromResponse(response: Response): User {
   return toUser(response.json());
 }
+/*function toUser(r: any): User {
+  const respUser = r.status === '1' ? r.user : null;
+  const user = respUser != null ? <User> ({
+    userName: respUser.userName,
+    role: respUser.role,
+    firstName: respUser.firstName,
+    lastName: respUser.lastName
+  }) : null;
+  return user;
+}*/
 function toUser(r: any): User {
-  const respUser = r.user;
-  const user = <User> ({
-    userName: respUser.userName
+  const respUser = r.status === '1' ? r.user : null;
+  const user = r.status === '1'  ? <User> ({
+    userName: r.user.userName,
+    role: r.user.role,
+    firstName: r.user.firstName,
+    lastName: r.user.lastName
+  }) : <User> ({
+    userError: r.user.userError
   });
-  console.log('User: ', user);
   return user;
 }

@@ -3,6 +3,8 @@ import { Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
 import {AuthGuard} from './_guards/auth.guard';
+import {AllPoliciesComponent} from './all-policies/all-policies.component';
+import {LandingComponent} from './landing/landing.component';
 
 const routes: Routes = [
   // map '/persons to people list component
@@ -20,6 +22,16 @@ const routes: Routes = [
     component: RegistrationComponent/*,
     canActivate: [AuthGuard]*/
   },
+  {
+    path: 'landing',
+    component: LandingComponent,
+    canActivate: [AuthGuard]
+  }, /*
+  {
+    path: 'allPolicy',
+    component: AllPoliciesComponent,
+    canActivate: [AuthGuard]
+  },*/
   // map '/' to '/persons'as our default route
   {
     path: '',
