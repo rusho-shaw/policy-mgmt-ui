@@ -11,11 +11,10 @@
     {{currentUser.userName}}
   </div>
 </div>
-<div class="row" >
-<app-all-policies></app-all-policies>
-</div>
 
-<div *ngIf="currentUser.role==='user'" class="row">
+<app-all-policies></app-all-policies>
+
+<div *ngIf="currentUser.role==='user'" >
   <app-user-policies></app-user-policies>
 </div>
 

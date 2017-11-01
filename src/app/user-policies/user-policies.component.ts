@@ -13,7 +13,4 @@ export class UserPoliciesComponent implements OnInit {
   ngOnInit() {
     this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
   }
-  convertToDateString(date: Date) {
-    console.log('In this function: ' + date);
-  }
 }

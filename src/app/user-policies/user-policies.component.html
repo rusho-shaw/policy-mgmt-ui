@@ -1,12 +1,26 @@
-<p>
-  user-policies works!
-</p>
-<div *ngFor="let policy of loggedInUser.policies">
- ID:  {{policy.policyId}}
-  <br>
-  EndDate: <span *ngIf="policy.policyEndDate" (load)="convertToDateString(policy.policyEndDate)">  </span>
-  <br>
- Amt:  {{policy.amountPaid}}
-  <br>
- IsValid: {{policy.isValid}}
+<div class="row">
+  <div class="col-sm-2">{{loggedInUser.userName}}</div>
+  <div class="col-sm-2">Policy Details</div>
 </div>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Policy No</th>
+            <th>Policy Name</th>
+            <th>Amount Paid</th>
+            <th>Policy End Date</th>
+            <th>Valid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let policy of loggedInUser.policies" app-user-policy-child [currentPolicy]=policy>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

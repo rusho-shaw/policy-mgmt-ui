@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  userURL: 'http://localhost:9080/user'
+  userURL: 'http://localhost:9080/user',
+  policyURL: 'http://localhost:9082/policies'
 };

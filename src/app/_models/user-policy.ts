@@ -5,5 +5,4 @@ export interface UserPolicy {
   // policyName: string;
   amountPaid: number;
   policyEndDate: Date;
-  isValid: boolean;
 }
