@@ -1,3 +1,12 @@
 <p>
   user-policies works!
 </p>
+<div *ngFor="let policy of loggedInUser.policies">
+ ID:  {{policy.policyId}}
+  <br>
+  EndDate: <span *ngIf="policy.policyEndDate" (load)="convertToDateString(policy.policyEndDate)">  </span>
+  <br>
+ Amt:  {{policy.amountPaid}}
+  <br>
+ IsValid: {{policy.isValid}}
+</div>

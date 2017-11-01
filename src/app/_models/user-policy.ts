@@ -1,6 +1,8 @@
+import {Policy} from './policy';
+
 export interface UserPolicy {
-  policyNo: number;
-  policy: UserPolicy;
+  policyId: string;
+  // policyName: string;
   amountPaid: number;
   policyEndDate: Date;
   isValid: boolean;

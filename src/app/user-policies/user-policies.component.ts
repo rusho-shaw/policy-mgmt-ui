@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../_models/user';
 
 @Component({
   selector: 'app-user-policies',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-policies.component.scss']
 })
 export class UserPoliciesComponent implements OnInit {
-
+  loggedInUser: User;
   constructor() { }
 
   ngOnInit() {
+    this.loggedInUser = JSON.parse(localStorage.getItem('currentUser'));
   }
-
+  convertToDateString(date: Date) {
+    console.log('In this function: ' + date);
+  }
 }

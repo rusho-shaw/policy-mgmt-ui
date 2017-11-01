@@ -69,7 +69,8 @@ function toUser(r: any): User {
     userName: r.user.userName,
     role: r.user.role,
     firstName: r.user.firstName,
-    lastName: r.user.lastName
+    lastName: r.user.lastName,
+    policies: r.user.policies
   }) : <User> ({
     userError: r.user.userError
   });
