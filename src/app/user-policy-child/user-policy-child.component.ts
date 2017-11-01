@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserPolicy} from '../_models/user-policy';
 import {DatePipe} from '@angular/common';
+import {PolicyService} from '../_service/policy.service';
 
 @Component({
   selector: '[app-user-policy-child]',
@@ -9,11 +10,10 @@ import {DatePipe} from '@angular/common';
 })
 export class UserPolicyChildComponent implements OnInit {
   @Input() currentPolicy: UserPolicy;
-  // policyEndDateString: string;
-  // today: number = Date.now();
   validity: string;
   datePattern = 'dd/MM/yyyy';
-  constructor() { }
+  policyName: string;
+  constructor(private policyService: PolicyService) { }
 
   ngOnInit() {
     console.log('policy: ' + this.currentPolicy.policyId);
@@ -29,7 +29,14 @@ export class UserPolicyChildComponent implements OnInit {
     const todayDate  = todayString !== null ? new Date(todayString) : null;
     console.log('todayDate: ' + todayDate + ' policyEndDateDate: ' + policyEndDateDate);
     this.validity = (policyEndDateDate !== null) && (policyEndDateDate < todayDate)  ? 'No' : 'Yes';
+    this.getPolicyName();
 
+  }
+
+  getPolicyName() {
+    /*alert(`saved!!! ${JSON.stringify(this.user)}`);*/
+    this.policyService.getPolicyName(this.currentPolicy.policyId)
+      .subscribe(r => this.policyName = r);
   }
 
 }
