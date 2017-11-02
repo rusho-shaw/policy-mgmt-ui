@@ -42,8 +42,10 @@ export class RegistrationComponent implements OnInit {
   saveUserDetails() {
     /*alert(`saved!!! ${JSON.stringify(this.user)}`);*/
     this.userService.save(this.user)
-      .subscribe(r => this.userName = r.userName);
-    this.loading = null;
+      .subscribe(r => {
+        this.userName = r.userName;
+        this.loading = null;
+      });
   }
   resetUserForm() {
     this.loading =  'loading';
