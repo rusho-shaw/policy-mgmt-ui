@@ -10,7 +10,7 @@
 
   <td>{{currentPolicy.policyId}}</td>
   <td>{{policyName}}</td>
-  <td>{{currentPolicy.amountPaid}}</td>
+  <td>{{currentPolicy.amountPaid | currency: 'INR':true:'2.2-3'}}</td>
   <td>{{currentPolicy.policyEndDate | date: datePattern}}</td>
   <td>{{validity}}</td>
 
