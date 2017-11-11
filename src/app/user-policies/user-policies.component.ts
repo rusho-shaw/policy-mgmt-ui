@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from '../_models/user';
+import {Policy} from '../_models/policy';
 
 @Component({
   selector: 'app-user-policies',
@@ -8,6 +9,7 @@ import {User} from '../_models/user';
 })
 export class UserPoliciesComponent implements OnInit {
   loggedInUser: User;
+
   constructor() { }
 
   ngOnInit() {

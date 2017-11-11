@@ -11,8 +11,11 @@
     {{currentUser.userName}}
   </div>
 </div>
+<section *ngIf="editedPolicy">
+  Policy Number {{editedPolicy.policyNumber}} {{editedPolicy.policyUpdateMsg}}
+</section>
 
-<app-all-policies></app-all-policies>
+<app-all-policies (policyEdited)="policyEdited($event)"></app-all-policies>
 
 <div *ngIf="currentUser.role==='user'" >
   <app-user-policies></app-user-policies>

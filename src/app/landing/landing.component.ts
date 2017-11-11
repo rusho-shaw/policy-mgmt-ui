@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../_models/user';
+import {Policy} from '../_models/policy';
 
 @Component({
   selector: 'app-landing',
@@ -9,9 +10,13 @@ import {User} from '../_models/user';
 export class LandingComponent implements OnInit {
   currentUser: User;
   constructor() { }
+  editedPolicy: Policy;
 
   ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
+  policyEdited(event) {
+    this.editedPolicy = event;
+  }
 }

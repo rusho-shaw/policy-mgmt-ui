@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PolicyService} from '../_service/policy.service';
 import {User} from '../_models/user';
 import {Policy} from '../_models/policy';
@@ -11,6 +11,9 @@ import {Policy} from '../_models/policy';
 export class AllPoliciesComponent implements OnInit {
   loggedInUser: User;
   policies: Policy[];
+  editedPolicy: Policy;
+  @Output()
+  policyEdited: EventEmitter<Policy> = new EventEmitter<Policy>();
   constructor(private policyService: PolicyService) { }
 
   ngOnInit() {
@@ -34,6 +37,7 @@ export class AllPoliciesComponent implements OnInit {
       .subscribe(r => {
         policy.policyUpdateMsg = r;
         policy.isBeingEdited = false;
+        this.policyEdited.emit(policy);
       });
   }
 }
