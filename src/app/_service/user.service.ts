@@ -7,6 +7,7 @@ import 'rxjs/add/observable/throw';
 import {User} from '../_models/user';
 import {environment} from '../../environments/environment';
 import { URLSearchParams } from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class UserService {
 
   // private userURL = 'http://localhost:9080/user';
   private userURL = environment.userURL;
-  constructor(private http: Http) { }
+  constructor(private http: Http, private httpClient: HttpClient) { }
 
   save(user: User): Observable<User> {
     // save user from here
@@ -36,6 +37,9 @@ export class UserService {
     return this.http.post(`${this.userURL}/login`
       , urlSearchParams)
       .map(mapUserFromResponse);
+    /*return this.httpClient.post(`${this.userURL}/login`
+      , urlSearchParams)
+      .map(mapUserFromResponse);*/
   }
 
   logout() {

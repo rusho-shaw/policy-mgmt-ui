@@ -6,5 +6,7 @@
 export const environment = {
   production: false,
   userURL: 'http://localhost:9080/user',
-  policyURL: 'http://localhost:9082/policies'
+  policyURL: 'http://localhost:9082/policies',
+  tokenURL: 'https://gateway.api.cloud.wso2.com:443/token?grant_type=client_credentials',
+  keys: 'Basic Qk8yTEtZYkhTMkNxR1Z3QVRkNHRzTk53eVh3YTpYM2ZhbHd6RGhVZlhGWGowNUVnOTVHajZWdGdh'
 };
