@@ -27,7 +27,7 @@ export class PolicyService {
     /*return this.http.get(`${this.policyURL}/getAllPolicies`)
       .map(mapPoliciesFromResponse);*/
 
-    return this.httpClient.get(`https://gateway.api.cloud.wso2.com:443/t/aares2920/policies/1.0.0/getAllPolicies`)
+    return this.httpClient.get(`${this.policyURL}/getAllPolicies`)
       .map(mapPoliciesFromResponse);
 
 

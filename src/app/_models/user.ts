@@ -1,4 +1,5 @@
 import {UserPolicy} from './user-policy';
+import {Token} from './token';
 
 export interface User {
   // id: number;
@@ -14,5 +15,5 @@ export interface User {
   policies?: UserPolicy[];
   role?: string;
   userError?: string;
-
+  token?: Token;
 }

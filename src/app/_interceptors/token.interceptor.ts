@@ -13,16 +13,16 @@ import 'rxjs/add/operator/do';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(private auth: AuthService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token = this.auth.getToken();
+    const token = this.auth.getToken();
     console.log('toke in 10: ' + token);
-    if (token === null) {
+    /*if (token === null) {
       console.log('toke is null in here 11');
       this.auth.getTokenFromWso2().subscribe( r => {
         console.log('token from wso2: ' + r);
         token = r;
         this.auth.setToken(token);
       });
-    }
+    }*/
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`
@@ -36,12 +36,12 @@ export class TokenInterceptor implements HttpInterceptor {
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          console.log('unauthorized response');
-          this.auth.getTokenFromWso2()
+          console.log('unauthorized response mod...');
+          /*this.auth.getTokenFromWso2()
             .subscribe(r => {
               console.log('got token in authservice:' + r);
               this.auth.setToken(r);
-            });
+            });*/
         }
       }
     });
