@@ -7,13 +7,14 @@ import 'rxjs/add/observable/throw';
 import {Http, Response, Headers} from '@angular/http';
 import { URLSearchParams } from '@angular/http';
 import {Policy} from '../_models/policy';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
+import {TokenInterceptor} from '../_interceptors/token.interceptor';
 
 @Injectable()
 export class PolicyService {
 
   private policyURL = environment.policyURL;
-  constructor(private http: Http, private httpClient: HttpClient) { }
+  constructor(private http: Http, private httpInterceptor: TokenInterceptor) { }
 
   getPolicyName(policyId: string): Observable<string> {
     // console.log(JSON.stringify({ policyId: policyId}));
@@ -27,7 +28,7 @@ export class PolicyService {
     /*return this.http.get(`${this.policyURL}/getAllPolicies`)
       .map(mapPoliciesFromResponse);*/
 
-    return this.httpClient.get(`https://gateway.api.cloud.wso2.com:443/t/aares2920/policies/1.0.0/getAllPolicies`)
+    return this.httpInterceptor.get(`https://gateway.api.cloud.wso2.com:443/t/aares2920/policies/1.0.0/getAllPolicies`)
       .map(mapPoliciesFromResponse);
 
 
@@ -48,7 +49,7 @@ function mapPolicyFromResponse(response: Response): string {
 function toPolicyName(r: any): string {
   return r.status === '1' ? r.policy.policyName : null;
 }
-function mapPoliciesFromResponse(response: HttpResponse<any>): Policy[] {
+function mapPoliciesFromResponse(response: Response): Policy[] {
   return toPolicies(response);
 }
 function toPolicies(r: any): Policy[] {
