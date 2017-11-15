@@ -9,7 +9,8 @@ export class LoadingComponent implements OnInit {
 
   public visible = false;
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
   public show(): void {
     this.visible = true;
     // this.visibleAnimate = true;
