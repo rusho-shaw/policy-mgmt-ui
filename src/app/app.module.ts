@@ -16,7 +16,7 @@ import { LandingComponent } from './landing/landing.component';
 import { UserPolicyChildComponent } from './user-policy-child/user-policy-child.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {TokenInterceptor} from './_interceptors/token.interceptor';
-import {AuthService} from "./_service/auth.service";
+import {AuthService} from './_service/auth.service';
 import { ModalComponent } from './modal/modal.component';
 import { LoadingComponent } from './loading/loading.component';
 

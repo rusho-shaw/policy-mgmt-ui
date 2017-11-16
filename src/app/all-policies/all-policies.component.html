@@ -15,7 +15,10 @@
           <th *ngIf="loggedInUser.role==='admin'"></th>
         </tr>
         </thead>
-        <tbody>
+        <span *ngIf="loadingPolicies" class="text-center">
+        <img class="img-responsive" src="../../assets/images/Spinner.gif">
+        </span>
+        <tbody *ngIf="!loadingPolicies">
         <tr *ngFor="let policy of policies; let counter = index"  >
           <td>{{counter+1}}</td>
           <td>
@@ -31,8 +34,8 @@
             </span>
           </td>
           <td *ngIf="loggedInUser.role==='admin'">
-            <span *ngIf="!policy.isBeingEdited"><a (click)="editPolicy(policy)"><u>Edit</u></a></span>
-            <span *ngIf="policy.isBeingEdited"><a (click)="savePolicy(policy)"><u>Save</u></a></span>
+            <span *ngIf="!policy.isBeingEdited"><a (click)="editPolicy(policy)" class="btn btn-default">Edit</a></span>
+            <span *ngIf="policy.isBeingEdited"><a (click)="savePolicy(policy)" class="btn btn-primary">Save</a></span>
           </td>
         </tr>
         </tbody>
@@ -40,3 +43,4 @@
     </div>
   </div>
 </div>
+<app-loading #appLoading></app-loading>

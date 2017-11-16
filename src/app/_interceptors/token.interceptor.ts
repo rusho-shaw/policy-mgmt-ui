@@ -8,10 +8,11 @@ import {
 import { Observable } from 'rxjs/Observable';
 import {AuthService} from '../_service/auth.service';
 import 'rxjs/add/operator/do';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.auth.getToken();
     console.log('toke in 10: ' + token);
@@ -37,11 +38,8 @@ export class TokenInterceptor implements HttpInterceptor {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
           console.log('unauthorized response mod...');
-          /*this.auth.getTokenFromWso2()
-            .subscribe(r => {
-              console.log('got token in authservice:' + r);
-              this.auth.setToken(r);
-            });*/
+          localStorage.setItem('expired', 'expired');
+          this.router.navigate(['/home']);
         }
       }
     });
