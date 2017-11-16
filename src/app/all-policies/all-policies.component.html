@@ -15,9 +15,6 @@
           <th *ngIf="loggedInUser.role==='admin'"></th>
         </tr>
         </thead>
-        <span *ngIf="loadingPolicies" class="text-center">
-        <img class="img-responsive" src="../../assets/images/Spinner.gif">
-        </span>
         <tbody *ngIf="!loadingPolicies">
         <tr *ngFor="let policy of policies; let counter = index"  >
           <td>{{counter+1}}</td>
@@ -40,6 +37,9 @@
         </tr>
         </tbody>
       </table>
+      <span *ngIf="loadingPolicies" class="text-center">
+        <img class="img-responsive" src="../../assets/images/Spinner.gif">
+      </span>
     </div>
   </div>
 </div>
