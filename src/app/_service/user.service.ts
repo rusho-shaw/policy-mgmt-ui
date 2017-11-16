@@ -77,7 +77,7 @@ function toUser(r: any): User {
     policies: r.user.policies,
     token: r.token
   }) : <User> ({
-    userError: r.user.userError
+    userError: r.message
   });
   return user;
 }

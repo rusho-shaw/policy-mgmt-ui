@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../_service/user.service';
 import {IMyDpOptions} from 'mydatepicker';
+import {LoadingComponent} from "../loading/loading.component";
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +16,7 @@ export class RegistrationComponent implements OnInit {
   loading: string;
   userName: string;
   date: Date = new Date();
+  @ViewChild('appLoading')appLoading: LoadingComponent;
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'dd/mm/yyyy',
     disableSince: {
@@ -41,10 +43,12 @@ export class RegistrationComponent implements OnInit {
   }*/
   saveUserDetails() {
     /*alert(`saved!!! ${JSON.stringify(this.user)}`);*/
+    this.appLoading.show();
     this.userService.save(this.user)
       .subscribe(r => {
         this.userName = r.userName;
         this.loading = null;
+        this.appLoading.hide();
       });
   }
   resetUserForm() {
