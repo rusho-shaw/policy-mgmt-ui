@@ -39,9 +39,9 @@
       </table>
 
     </div>
-    <div *ngIf="loadingPolicies">
-      <img class="img-responsive" src="../../assets/images/Spinner.gif">
-    </div>
+  </div>
+  <div class="col-sm-6 col-sm-offset-2 text-center" *ngIf="loadingPolicies">
+    <img class="img-responsive" src="../../assets/images/Spinner.gif">
   </div>
 </div>
 <app-loading #appLoading></app-loading>
