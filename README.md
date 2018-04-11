@@ -17,7 +17,7 @@ Run the commands given below:
 
 `cd policy-mgmt-ui`
 
-`npm install bootstrap-sass –save`
+`npm install bootstrap-sass --save`
 
 In the `src/assets/` directory, create a directory named `bootstrap-sass` with an empty file named: `_variables.scss`.
 In the `_variables.scss` file, paste the content from:
